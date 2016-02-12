@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="lib1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/XMLUtilities.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/MiniGameFramework.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/PropertiesManager.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/AudioManager.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
