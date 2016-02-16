@@ -232,21 +232,24 @@ public class ZombieCrushSagaDataModel extends MiniGameDataModel {
      */
     private SpriteType initZombieSpriteType(String imgFile, String spriteTypeID) {
         // WE'LL MAKE A NEW SPRITE TYPE FOR EACH GROUP OF SIMILAR LOOKING TILES
-        SpriteType sT = new SpriteType(spriteTypeID);
-        addSpriteType(sT);
+        SpriteType sT = getSpriteType(spriteTypeID);
+        if (sT == null) {
+            sT = new SpriteType(spriteTypeID);
+            // LOAD THE ART
+            BufferedImage img = miniGame.loadImageWithColorKey(imgFile, COLOR_KEY);
+            Image tempImage = img.getScaledInstance(TILE_IMAGE_WIDTH, TILE_IMAGE_HEIGHT, BufferedImage.SCALE_SMOOTH);
+            img = new BufferedImage(TILE_IMAGE_WIDTH, TILE_IMAGE_HEIGHT, BufferedImage.TYPE_INT_ARGB);
+            img.getGraphics().drawImage(tempImage, 0, 0, null);
 
-        // LOAD THE ART
-        BufferedImage img = miniGame.loadImageWithColorKey(imgFile, COLOR_KEY);
-        Image tempImage = img.getScaledInstance(TILE_IMAGE_WIDTH, TILE_IMAGE_HEIGHT, BufferedImage.SCALE_SMOOTH);
-        img = new BufferedImage(TILE_IMAGE_WIDTH, TILE_IMAGE_HEIGHT, BufferedImage.TYPE_INT_ARGB);
-        img.getGraphics().drawImage(tempImage, 0, 0, null);
-
-        // WE'LL USE THE SAME IMAGE FOR ALL STATES
-        sT.addState(INVISIBLE_STATE, img);
-        sT.addState(VISIBLE_STATE, img);
-        sT.addState(SELECTED_STATE, img);
-        sT.addState(SPECIAL_STRIPED_STATE, img);
-        sT.addState(SPECIAL_WRAPPED_STATE, img);
+            // WE'LL USE THE SAME IMAGE FOR ALL STATES
+            sT.addState(INVISIBLE_STATE, img);
+            sT.addState(VISIBLE_STATE, img);
+            sT.addState(SELECTED_STATE, img);
+            sT.addState(SPECIAL_STRIPED_STATE, img);
+            sT.addState(SPECIAL_WRAPPED_STATE, img);
+            
+            addSpriteType(sT);
+        }
         return sT;
     }
 
@@ -717,7 +720,8 @@ public class ZombieCrushSagaDataModel extends MiniGameDataModel {
             r = z.getGridRow();
             c = z.getGridColumn();
             zombieGrid[r][c] = null;
-            //updateAll(miniGame);
+            ZombieCrushSagaZombie replacementTile = initZombieHelper(BASIC_TYPE, "", VISIBLE_STATE);
+            replacementTile.setGridCell(r, c);
         }
         matchingZombies = new ArrayList<>();
 
