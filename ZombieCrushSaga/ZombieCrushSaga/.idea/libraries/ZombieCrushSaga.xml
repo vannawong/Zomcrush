@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="ZombieCrushSaga">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/dist/ZombieCrushSaga.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
