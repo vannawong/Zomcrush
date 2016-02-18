@@ -47,6 +47,7 @@ public class ZombieCrushSagaMiniGame extends MiniGame {
     private int upper = 15;
     // THE LEVEL THAT IS CURRENTLY DISPLAYED IN LEVEL SCORE OR GAME PLAY
     private String currentLevel = "";
+    private int highestLevel;
     public int level;
     private int highestLevelScore;
     public boolean inProgress;
@@ -177,6 +178,10 @@ public class ZombieCrushSagaMiniGame extends MiniGame {
         guiDecor.get(ONE_STAR_TYPE).setState(INVISIBLE_STATE);
         guiDecor.get(PROGRESS_TYPE).setState(VISIBLE_STATE);
 
+        // TURN OFF DIALOGS
+        guiDialogs.get(LOSS_DIALOG_TYPE).setState(INVISIBLE_STATE);
+        guiDialogs.get(WIN_DIALOG_TYPE).setState(INVISIBLE_STATE);
+        
         // PLAY THE GAMEPLAY SCREEN SONG
         audio.stop(ZombieCrushSagaPropertyType.SPLASH_SCREEN_SONG_CUE.toString());
         audio.play(ZombieCrushSagaPropertyType.GAMEPLAY_SONG_CUE.toString(), true);
@@ -265,8 +270,20 @@ public class ZombieCrushSagaMiniGame extends MiniGame {
         guiButtons.get(SCROLL_UP_BUTTON_TYPE).setEnabled(true);
         guiButtons.get(QUIT_BUTTON_TYPE).setState(VISIBLE_STATE);
         guiButtons.get(QUIT_BUTTON_TYPE).setEnabled(true);
+        if (lower > LEVELS_PER_SCREEN) {
         guiButtons.get(SCROLL_DOWN_BUTTON_TYPE).setState(VISIBLE_STATE);
         guiButtons.get(SCROLL_DOWN_BUTTON_TYPE).setEnabled(true);
+        } else {
+            guiButtons.get(SCROLL_DOWN_BUTTON_TYPE).setState(INVISIBLE_STATE);
+            guiButtons.get(SCROLL_DOWN_BUTTON_TYPE).setEnabled(false);
+        }
+        if (upper < highestLevel) {
+            guiButtons.get(SCROLL_UP_BUTTON_TYPE).setState(VISIBLE_STATE);
+            guiButtons.get(SCROLL_UP_BUTTON_TYPE).setEnabled(true);
+        } else {
+            guiButtons.get(SCROLL_UP_BUTTON_TYPE).setState(INVISIBLE_STATE);
+            guiButtons.get(SCROLL_UP_BUTTON_TYPE).setEnabled(false);
+        }
         guiButtons.get(PLAY_LEVEL_BUTTON_TYPE).setState(INVISIBLE_STATE);
         guiButtons.get(PLAY_LEVEL_BUTTON_TYPE).setEnabled(false);
 
@@ -295,9 +312,10 @@ public class ZombieCrushSagaMiniGame extends MiniGame {
         audio.stop(ZombieCrushSagaPropertyType.GAMEPLAY_SONG_CUE.toString());
 
         for (int i = 1; i <= LEVELS; i++) {
-            guiButtons.get("LEVEL_" + i).setState(VISIBLE_STATE);
-            if (i <= record.getHighestLevel() + 1) {
-                guiButtons.get("LEVEL_" + i).setEnabled(true);
+            Sprite levelButton = guiButtons.get("LEVEL_" + i);
+            if (i <= highestLevel + 1) {
+                levelButton.setState(VISIBLE_STATE);
+                levelButton.setEnabled(true);
             } else {
                 guiButtons.get("LEVEL_" + i).setEnabled(false);
             }
@@ -699,7 +717,6 @@ public class ZombieCrushSagaMiniGame extends MiniGame {
     @Override
     public void initGUIHandlers() {
         PropertiesManager props = PropertiesManager.getPropertiesManager();
-        String dataPath = props.getProperty(ZombieCrushSagaPropertyType.DATA_PATH);
 
         // WE'LL HAVE A CUSTOM RESPONSE FOR WHEN THE USER CLOSES THE WINDOW
         window.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -805,18 +822,17 @@ public class ZombieCrushSagaMiniGame extends MiniGame {
         switchToSplashScreen();
     }
 
-    public void scroll(String up) {
+    public void scroll(String direction) {
         for (int i = lower; i <= upper; i++) {
             guiButtons.get("LEVEL_" + i).setState(INVISIBLE_STATE);
             guiButtons.get("LEVEL_" + i).setEnabled(false);
         }
-        if (up.equals(SCROLL_UP_BUTTON_TYPE)) {
-            if (upper == LEVELS) {
-                ;
-            } else {
-                if ((upper + 15) > LEVELS) {
-                    upper = LEVELS;
-                    lower += 15;
+        if (direction.equals(SCROLL_UP_BUTTON_TYPE)) {
+            if ((upper + 15) >= highestLevel) {
+                upper = highestLevel;
+                lower += 15;
+                guiButtons.get(SCROLL_UP_BUTTON_TYPE).setEnabled(false);
+                guiButtons.get(SCROLL_UP_BUTTON_TYPE).setState(INVISIBLE_STATE);
                 } else {
                     lower += 15;
                     upper += 15;
@@ -824,31 +840,30 @@ public class ZombieCrushSagaMiniGame extends MiniGame {
                 if (currentSagaScreen < NUM_BACKGROUNDS) {
                     currentSagaScreen++;
                 }
+            guiButtons.get(SCROLL_DOWN_BUTTON_TYPE).setEnabled(true);
+            guiButtons.get(SCROLL_DOWN_BUTTON_TYPE).setState(VISIBLE_STATE);
             }
-        }
 
-        if (up.equals(SCROLL_DOWN_BUTTON_TYPE)) {
-            if (upper == LEVELS) {
-                upper = lower - 1;
-                lower -= 15;
-            } else {
-                if (lower == 1)
-                ; else {
+        if (direction.equals(SCROLL_DOWN_BUTTON_TYPE)) {
                     if ((lower - 15) < 1) {
                         lower = 1;
                         upper = 15;
+                guiButtons.get(SCROLL_DOWN_BUTTON_TYPE).setEnabled(false);
+                guiButtons.get(SCROLL_DOWN_BUTTON_TYPE).setState(INVISIBLE_STATE);
                     } else {
+                        upper = lower - 1;
                         lower -= 15;
-                        upper -= 15;
                     }
-                }
+            guiButtons.get(SCROLL_UP_BUTTON_TYPE).setEnabled(true);
+            guiButtons.get(SCROLL_UP_BUTTON_TYPE).setState(VISIBLE_STATE);
                 if (currentSagaScreen > 2) {
                     currentSagaScreen--;
                 }
             }
-        }
 
         for (int i = lower; i <= upper; i++) {
+            if (i > highestLevel)
+                break;
             guiButtons.get("LEVEL_" + i).setState(VISIBLE_STATE);
             guiButtons.get("LEVEL_" + i).setEnabled(true);
         }

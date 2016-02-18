@@ -1300,26 +1300,26 @@ public class ZombieCrushSagaDataModel extends MiniGameDataModel {
             zombie_2.setY(y1);
 
             miniGame.getAudio().play(ZombieCrushSagaPropertyType.NO_MATCH_AUDIO_CUE.toString(), false);
+        } else {
+            if (movesRemaining >= 1) {
+                if (levelScore >= oneStar) {
+                    endGameAsWin();
+                    levelScore += movesRemaining * 20;
+                } else {
+                    movesRemaining--;
+                }
+            } else {
+                if (remainingJelly == 0 && levelScore >= oneStar) {
+                    endGameAsWin();
+
+                } else {
+                    endGameAsLoss();
+                }
+            }
         }
 
         if (!checkForMoves()) {
             shuffleBoard();
-        }
-
-        if (movesRemaining >= 1) {
-            if (levelScore >= oneStar) {
-                endGameAsWin();
-                levelScore += movesRemaining * 20;
-            } else {
-                movesRemaining--;
-            }
-        } else {
-            if (remainingJelly == 0 && levelScore >= oneStar) {
-                endGameAsWin();
-
-            } else {
-                endGameAsLoss();
-            }
         }
     }
 
