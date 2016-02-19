@@ -258,6 +258,7 @@ public class ZombieCrushSagaMiniGame extends MiniGame {
 
     public void switchToSagaScreen() {
         currentScreenState = SAGA_SCREEN_STATE;
+        highestLevel = record.getHighestLevel();
         // CHANGE THE BACKGROUND
         guiDecor.get(BACKGROUND_TYPE).setState(SAGA_SCREEN_STATE + "_" + currentSagaScreen);
 
