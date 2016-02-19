@@ -29,6 +29,7 @@ import zombie_crush_saga.events.QuitLevelHandler;
 import zombie_crush_saga.events.ResetHandler;
 import zombie_crush_saga.events.RetryHandler;
 import zombie_crush_saga.events.ScrollHandler;
+import zombie_crush_saga.file.utils.FileLoaderUtils;
 
 public class ZombieCrushSagaMiniGame extends MiniGame {
 
@@ -365,9 +366,6 @@ public class ZombieCrushSagaMiniGame extends MiniGame {
      */
     public void initAudioContent() {
         try {
-            PropertiesManager props = PropertiesManager.getPropertiesManager();
-            String audioPath = props.getProperty(ZombieCrushSagaPropertyType.AUDIO_PATH);
-
             // LOAD ALL THE AUDIO
             loadAudioCue(ZombieCrushSagaPropertyType.SELECT_AUDIO_CUE);
             loadAudioCue(ZombieCrushSagaPropertyType.MATCH_AUDIO_CUE);
@@ -381,7 +379,7 @@ public class ZombieCrushSagaMiniGame extends MiniGame {
 
             // PLAY THE WELCOME SCREEN SONG
             audio.play(ZombieCrushSagaPropertyType.SPLASH_SCREEN_SONG_CUE.toString(), true);
-        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException | InvalidMidiDataException | MidiUnavailableException e) {
+        } catch (Exception e) {
             errorHandler.processError(ZombieCrushSagaPropertyType.AUDIO_FILE_ERROR);
         }
     }
@@ -391,12 +389,11 @@ public class ZombieCrushSagaMiniGame extends MiniGame {
      * which should have been specified via an XML properties file.
      */
     private void loadAudioCue(ZombieCrushSagaPropertyType audioCueType)
-            throws UnsupportedAudioFileException, IOException, LineUnavailableException,
-            InvalidMidiDataException, MidiUnavailableException {
+            throws Exception {
         PropertiesManager props = PropertiesManager.getPropertiesManager();
         String audioPath = props.getProperty(ZombieCrushSagaPropertyType.AUDIO_PATH);
         String cue = props.getProperty(audioCueType.toString());
-        audio.loadAudio(audioCueType.toString(), audioPath + cue);
+        audio.loadAudio(FileLoaderUtils.loadFile(audioPath + cue), audioCueType.toString(), audioPath + cue);
     }
 
     /**

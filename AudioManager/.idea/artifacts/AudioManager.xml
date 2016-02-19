@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="AudioManager">
+    <output-path>$PROJECT_DIR$/dist</output-path>
+    <root id="archive" name="AudioManager.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/manifest.mf" output-file-name="MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="AudioManager" />
+    </root>
+  </artifact>
+</component>

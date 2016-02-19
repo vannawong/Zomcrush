@@ -25,10 +25,20 @@
         <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/ZombieCrushSaga.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="59" column="32" selection-start-line="59" selection-start-column="32" selection-end-line="59" selection-end-column="32" />
+              <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="properties.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/build/production/Vanna_ZombieCrushSaga/data/properties.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-10.625">
+              <caret line="17" column="61" selection-start-line="17" selection-start-column="61" selection-end-line="17" selection-end-column="61" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -37,7 +47,17 @@
         <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/ui/ZombieCrushSagaMiniGame.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.3325301">
-              <caret line="392" column="17" selection-start-line="392" selection-start-column="17" selection-end-line="392" selection-end-column="17" />
+              <caret line="448" column="0" selection-start-line="448" selection-start-column="0" selection-end-line="448" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MiniGame.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/../MiniGameFramework/dist/MiniGameFramework.jar!/mini_game/MiniGame.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.0740743">
+              <caret line="49" column="22" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -46,8 +66,8 @@
       <file leaf-file-name="PropertiesManager.class" pinned="false" current-in-tab="false">
         <entry file="jar://$PROJECT_DIR$/../PropertiesManager/dist/PropertiesManager.jar!/properties_manager/PropertiesManager.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.037037">
-              <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+            <state vertical-scroll-proportion="-5.0740743">
+              <caret line="47" column="18" selection-start-line="47" selection-start-column="18" selection-end-line="47" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -77,7 +97,7 @@
         <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/file/utils/FileLoaderUtils.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -120,6 +140,9 @@
         <option value="$PROJECT_DIR$/../XMLUtilities/dist/XMLUtilities.jar!/xml_utilities/XMLUtilities.class" />
         <option value="$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/file/utils/FileLoaderUtils.java" />
         <option value="$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/ZombieCrushSaga.java" />
+        <option value="$PROJECT_DIR$/ZombieCrushSaga/build/production/Vanna_ZombieCrushSaga/data/properties.xml" />
+        <option value="$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/ui/ZombieCrushSagaMiniGame.java" />
+        <option value="$PROJECT_DIR$/../AudioManager/dist/AudioManager.jar!/audio_manager/AudioManager.class" />
       </list>
     </option>
   </component>
@@ -351,6 +374,40 @@
               <option name="myItemId" value="Vanna_ZombieCrushSaga" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ZombieCrushSaga" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="build" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="production" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Vanna_ZombieCrushSaga" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="audio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zomcrush" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Vanna_ZombieCrushSaga" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Vanna_ZombieCrushSaga" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -358,7 +415,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../PropertiesManager" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../AudioManager" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -707,18 +764,13 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/ZombieCrushSaga.java</url>
-          <line>45</line>
+          <url>file://$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/ui/ZombieCrushSagaMiniGame.java</url>
+          <line>376</line>
           <properties />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$PROJECT_DIR$/../XMLUtilities/dist/XMLUtilities.jar!/xml_utilities/XMLUtilities.class</url>
-          <line>31</line>
-          <properties />
-          <option name="timeStamp" value="3" />
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="4" />
+      <option name="time" value="6" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -814,6 +866,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/build/production/Vanna_ZombieCrushSaga/data/properties.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.625">
+          <caret line="17" column="61" selection-start-line="17" selection-start-column="61" selection-end-line="17" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="jar://$PROJECT_DIR$/../XMLUtilities/dist/XMLUtilities.jar!/xml_utilities/XMLUtilities.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.7777777">
@@ -824,8 +884,26 @@
     </entry>
     <entry file="jar://$PROJECT_DIR$/../PropertiesManager/dist/PropertiesManager.jar!/properties_manager/PropertiesManager.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.037037">
-          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+        <state vertical-scroll-proportion="-5.0740743">
+          <caret line="47" column="18" selection-start-line="47" selection-start-column="18" selection-end-line="47" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/ZombieCrushSaga.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../MiniGameFramework/dist/MiniGameFramework.jar!/mini_game/MiniGame.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.0740743">
+          <caret line="49" column="22" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -833,27 +911,25 @@
     <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/file/utils/FileLoaderUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/ZombieCrushSaga.java">
+    <entry file="jar://$PROJECT_DIR$/../AudioManager/dist/AudioManager.jar!/audio_manager/AudioManager.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="59" column="32" selection-start-line="59" selection-start-column="32" selection-end-line="59" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.7627119">
+          <caret line="37" column="67" selection-start-line="37" selection-start-column="56" selection-end-line="37" selection-end-column="65" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/ui/ZombieCrushSagaMiniGame.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3325301">
-          <caret line="392" column="17" selection-start-line="392" selection-start-column="17" selection-end-line="392" selection-end-column="17" />
+          <caret line="448" column="0" selection-start-line="448" selection-start-column="0" selection-end-line="448" selection-end-column="0" />
           <folding />
         </state>
       </provider>
