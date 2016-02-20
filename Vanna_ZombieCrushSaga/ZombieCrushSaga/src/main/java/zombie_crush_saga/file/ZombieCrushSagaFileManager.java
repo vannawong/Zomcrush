@@ -22,6 +22,8 @@ import zombie_crush_saga.data.ZombieCrushSagaRecord;
 import zombie_crush_saga.ui.ZombieCrushSagaMiniGame;
 import properties_manager.PropertiesManager;
 
+import static zombie_crush_saga.file.utils.FileLoaderUtils.loadFile;
+
 /**
  * This class provides services for efficiently loading and saving binary files
  * for the Mahjong game application.
@@ -60,7 +62,7 @@ public class ZombieCrushSagaFileManager {
         // OUR LEVEL FILES WILL HAVE THE DIMENSIONS FIRST,
         // FOLLOWED BY THE GRID VALUES
         try {
-            File fileToOpen = new File(levelFile);
+            File fileToOpen = loadFile(levelFile);
            // LET'S USE A FAST LOADING TECHNIQUE. WE'LL LOAD ALL OF THE
             // BYTES AT ONCE INTO A BYTE ARRAY, AND THEN PICK THAT APART.
             // THIS IS FAST BECAUSE IT ONLY HAS TO DO FILE READING ONCE

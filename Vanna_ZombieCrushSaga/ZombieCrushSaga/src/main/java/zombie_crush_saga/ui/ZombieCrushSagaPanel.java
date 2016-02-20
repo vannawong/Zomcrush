@@ -215,7 +215,7 @@ public class ZombieCrushSagaPanel extends JPanel {
 
         // RENDER SCORE
         if (((ZombieCrushSagaMiniGame) game).isCurrentScreenState(GAME_SCREEN_STATE)) {
-            String score = ((ZombieCrushSagaDataModel) data).getScore() + "";
+            String score = data.getScore() + "";
             int x2 = SCORE_CONTAINER_X + TEXT_OFFSET;
             g.setFont(TEXT_DISPLAY_FONT);
             g.drawString(score, x2, 60);
@@ -263,7 +263,7 @@ public class ZombieCrushSagaPanel extends JPanel {
         // RENDER LEVEL DESCRIPTION
         if (((ZombieCrushSagaMiniGame) game).isCurrentScreenState(LEVEL_SCORE_SCREEN_STATE)) {
             int p = 0;
-            String levelDesc = ((ZombieCrushSagaDataModel) data).getLevelDesc();
+            String levelDesc = data.getLevelDesc();
             String levelDescLines[] = levelDesc.split("\\s+");
             String temp = "";
             ArrayList<String> tempList = new ArrayList<>();

@@ -13,9 +13,9 @@
         <property name="GAME_HEIGHT"                value="700"></property>
         <property name="GAME_LEFT_OFFSET"           value="20"></property>
         <property name="GAME_TOP_OFFSET"            value="100"></property>
-        <property name="AUDIO_PATH"                 value="./audio/"></property>
-        <property name="IMG_PATH"                   value="./img/"></property>
-		<property name="LEVEL_PATH"					value="./data/zomcrush/LEVEL_"></property>
+        <property name="AUDIO_PATH"                 value="../audio/"></property>
+        <property name="IMG_PATH"                   value="../img/"></property>
+		<property name="LEVEL_PATH"					value="../data/zomcrush/LEVEL_"></property>
         <property name="FPS"                        value="1000"></property>
         <property name="RECORD_FILE_NAME"           value="PlayerRecord.dat"></property>
     </property_list>

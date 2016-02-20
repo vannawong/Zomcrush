@@ -13,6 +13,8 @@ import mini_game.MiniGameDataModel;
 import mini_game.SpriteType;
 import properties_manager.PropertiesManager;
 import static zombie_crush_saga.ZombieCrushSagaConstants.*;
+import static zombie_crush_saga.file.utils.FileLoaderUtils.loadFile;
+
 import zombie_crush_saga.ui.ZombieCrushSagaMiniGame;
 import zombie_crush_saga.ui.ZombieCrushSagaPanel;
 
@@ -118,7 +120,11 @@ public class ZombieCrushSagaDataModel extends MiniGameDataModel {
         matchingZombies = new ArrayList<>();
 
         for (int i = 0; i < totalTiles; i++) {
-            initZombieHelper(BASIC_TYPE, "", INVISIBLE_STATE);
+            try {
+                initZombieHelper(BASIC_TYPE, "", INVISIBLE_STATE);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -130,7 +136,7 @@ public class ZombieCrushSagaDataModel extends MiniGameDataModel {
      * @param initState The initial state of the tile.
      * @return
      */
-    public ZombieCrushSagaZombie initZombieHelper(String specialType, String initType, String initState) {
+    public ZombieCrushSagaZombie initZombieHelper(String specialType, String initType, String initState) throws Exception {
         PropertiesManager props = PropertiesManager.getPropertiesManager();
         String imgPath = props.getProperty(ZombieCrushSagaPropertyType.IMG_PATH);
         int spriteTypeID = 0;
@@ -138,12 +144,12 @@ public class ZombieCrushSagaDataModel extends MiniGameDataModel {
 
         // WE'LL RENDER ALL THE TILES ON TOP OF THE BLANK TILE
         String blankZombieFileName = props.getProperty(ZombieCrushSagaPropertyType.BLANK_TILE_IMAGE_NAME);
-        BufferedImage blankZombieImage = miniGame.loadImageWithColorKey(imgPath + blankZombieFileName, COLOR_KEY);
+        BufferedImage blankZombieImage = miniGame.loadImageWithColorKey(loadFile(imgPath + blankZombieFileName), COLOR_KEY);
         ((ZombieCrushSagaPanel) (miniGame.getCanvas())).setBlankZombieImage(blankZombieImage);
 
         // THIS IS A HIGHLIGHTED BLANK TILE FOR WHEN THE PLAYER SELECTS ONE
         String blankZombieSelectedFileName = props.getProperty(ZombieCrushSagaPropertyType.BLANK_TILE_SELECTED_IMAGE_NAME);
-        BufferedImage blankZombieSelectedImage = miniGame.loadImageWithColorKey(imgPath + blankZombieSelectedFileName, COLOR_KEY);
+        BufferedImage blankZombieSelectedImage = miniGame.loadImageWithColorKey(loadFile(imgPath + blankZombieSelectedFileName), COLOR_KEY);
         ((ZombieCrushSagaPanel) (miniGame.getCanvas())).setBlankZombieSelectedImage(blankZombieSelectedImage);
 
         // TYPES WILL BE GENERATED RANDOMLY
@@ -264,13 +270,13 @@ public class ZombieCrushSagaDataModel extends MiniGameDataModel {
      * This helper method initializes a sprite type for a tile or set of similar
      * zombies to be created.
      */
-    private SpriteType initZombieSpriteType(String imgFile, String spriteTypeID) {
+    private SpriteType initZombieSpriteType(String imgFile, String spriteTypeID) throws Exception {
         // WE'LL MAKE A NEW SPRITE TYPE FOR EACH GROUP OF SIMILAR LOOKING TILES
         SpriteType sT = new SpriteType(spriteTypeID);
         addSpriteType(sT);
 
         // LOAD THE ART
-        BufferedImage img = miniGame.loadImageWithColorKey(imgFile, COLOR_KEY);
+        BufferedImage img = miniGame.loadImageWithColorKey(loadFile(imgFile), COLOR_KEY);
         Image tempImage = img.getScaledInstance(TILE_IMAGE_WIDTH, TILE_IMAGE_HEIGHT, BufferedImage.SCALE_SMOOTH);
         img = new BufferedImage(TILE_IMAGE_WIDTH, TILE_IMAGE_HEIGHT, BufferedImage.TYPE_INT_ARGB);
         img.getGraphics().drawImage(tempImage, 0, 0, null);
@@ -380,8 +386,6 @@ public class ZombieCrushSagaDataModel extends MiniGameDataModel {
      *
      * @param column The column in the grid the tile is located.
      *
-     * @param z The level of the tile in the stack at the given grid location.
-     *
      * @return The x-axis pixel location of the tile
      */
     public int calculateZombieXInGrid(int column) {
@@ -395,8 +399,6 @@ public class ZombieCrushSagaDataModel extends MiniGameDataModel {
      * placed at row with stack position z.
      *
      * @param row The row in the grid the tile is located.
-     *
-     * @param z The level of the tile in the stack at the given grid location.
      *
      * @return The y-axis pixel location of the tile
      */
@@ -639,7 +641,7 @@ public class ZombieCrushSagaDataModel extends MiniGameDataModel {
      *
      * @param selectZombie The tile to select.
      */
-    public void selectZombie(ZombieCrushSagaZombie selectZombie) {
+    public void selectZombie(ZombieCrushSagaZombie selectZombie) throws Exception {
         ((ZombieCrushSagaMiniGame) miniGame).inProgress = true;
         if (powerUpPressed) {
             matchingZombies.add(selectZombie);
@@ -684,7 +686,11 @@ public class ZombieCrushSagaDataModel extends MiniGameDataModel {
         } else {
             selectZombie.setState(SELECTED_STATE);
             if (isValidSwap(selectedZombie, selectZombie)) {
-                swapZombies(selectedZombie, selectZombie);
+                try {
+                    swapZombies(selectedZombie, selectZombie);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 selectedZombie = null;
             } else {
                 switch (selectedZombie.getSpecialType()) {
@@ -713,7 +719,7 @@ public class ZombieCrushSagaDataModel extends MiniGameDataModel {
      * @param zombie_1
      * @param zombie_2
      */
-    public boolean processSwap(ZombieCrushSagaZombie zombie_1, ZombieCrushSagaZombie zombie_2) {
+    public boolean processSwap(ZombieCrushSagaZombie zombie_1, ZombieCrushSagaZombie zombie_2) throws Exception {
         beginUsingData();
 
         switch (zombie_1.getSpecialType()) {
@@ -904,7 +910,7 @@ public class ZombieCrushSagaDataModel extends MiniGameDataModel {
      * @param zombie The zombie that the new type is to be created.
      * @param type The type of zombie to be created.
      */
-    public void processMove(ZombieCrushSagaZombie zombie, ZombieCrushSagaZombie zombie2, String type, String state, boolean inGame) {
+    public void processMove(ZombieCrushSagaZombie zombie, ZombieCrushSagaZombie zombie2, String type, String state, boolean inGame) throws Exception {
         if (!inGame) {
             return;
         }
@@ -1050,7 +1056,11 @@ public class ZombieCrushSagaDataModel extends MiniGameDataModel {
         ArrayList<ZombieCrushSagaZombie> temp = new ArrayList<ZombieCrushSagaZombie>();
 
         for (int i = 0; i < newNeeded; i++) {
-            temp.add(initZombieHelper(BASIC_TYPE, "", VISIBLE_STATE));
+            try {
+                temp.add(initZombieHelper(BASIC_TYPE, "", VISIBLE_STATE));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         int p = 1;
@@ -1099,8 +1109,7 @@ public class ZombieCrushSagaDataModel extends MiniGameDataModel {
      * Tests for matches in the horizontal direction.
      *
      * @param zombie_1 The zombie in question.
-     * @param counter Tells us when the matching started.
-     * @param dir Direction we are moving along the grid.
+     * @param inGame Used to distinguish between pregame matching and ingame matching.
      */
     public int matchHorizontal(ZombieCrushSagaZombie zombie_1, boolean inGame) {
         int r = zombie_1.getGridRow();
@@ -1145,8 +1154,7 @@ public class ZombieCrushSagaDataModel extends MiniGameDataModel {
      * Tests for matches in the horizontal direction.
      *
      * @param zombie_1 The zombie in question.
-     * @param counter Tells us when the matching started.
-     * @param dir Direction we are moving along the grid.
+     * @param inGame Used to distinguish between pregame matching and ingame matching.
      */
     public int matchVertical(ZombieCrushSagaZombie zombie_1, boolean inGame) {
         // try {
@@ -1189,12 +1197,11 @@ public class ZombieCrushSagaDataModel extends MiniGameDataModel {
     }
 
     /**
-     * Testing to see how many matches in a row
+     * See if the zombies are adjacent and thus is a valid swap.
      *
-     * @param zombie_1 The zombie in question.
-     * @param rDir The direction of the test.
-     * @param cDir Direction of the test.
-     * @param counter Number of zombies in a row.
+     * @param zombie_1 Zombie one in the match.
+     * @param zombie_2 Zombie two in match.
+     *                 //TODO figure out which zombie is being swapped.
      * @return Total number of zombies in a row.
      */
     public boolean isValidSwap(ZombieCrushSagaZombie zombie_1, ZombieCrushSagaZombie zombie_2) {
@@ -1236,7 +1243,7 @@ public class ZombieCrushSagaDataModel extends MiniGameDataModel {
         endUsingData();
     }
 
-    public void swapZombies(ZombieCrushSagaZombie zombie_1, ZombieCrushSagaZombie zombie_2) {
+    public void swapZombies(ZombieCrushSagaZombie zombie_1, ZombieCrushSagaZombie zombie_2) throws Exception {
         int r1 = zombie_1.getGridRow();
         int r2 = zombie_2.getGridRow();
         int c1 = zombie_1.getGridColumn();
@@ -1357,9 +1364,12 @@ public class ZombieCrushSagaDataModel extends MiniGameDataModel {
         // CHECK THE TOP OF THE STACK AT col, row
         // GET AND TRY TO SELECT THE TOP TILE IN THAT CELL, IF THERE IS ONE
         ZombieCrushSagaZombie testZombie = zombieGrid[col][row];
-        if (testZombie == null)
-            ; else {
-            selectZombie(testZombie);
+        if (testZombie != null) {
+            try {
+                selectZombie(testZombie);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -1519,9 +1529,12 @@ public class ZombieCrushSagaDataModel extends MiniGameDataModel {
 
         // AND START ALL UPDATES
         beginGame();
-
-        while (checkForMatches(false, 0)) {
-            checkForMatches(false, 0);
+        try {
+            while (checkForMatches(false, 0)) {
+                checkForMatches(false, 0);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -1531,10 +1544,6 @@ public class ZombieCrushSagaDataModel extends MiniGameDataModel {
 
     /**
      * This helper method initializes the jelly grid.
-     *
-     * @param newJellyGrid The grid with values.
-     * @param initGridColumns The initial grid columns.
-     * * @param initGridRows The initial grid rows.
      *
      * public void initJellyGrid(int[][] newJellyGrid, int initGridColumns, int
      * initGridRows) { // KEEP ALL THE GRID INFO gridColumns = initGridColumns;
@@ -1678,7 +1687,7 @@ public class ZombieCrushSagaDataModel extends MiniGameDataModel {
     /**
      * Helper method to check for matches before each game and after each swap.
      */
-    public boolean checkForMatches(boolean inGame, int times) {
+    public boolean checkForMatches(boolean inGame, int times) throws Exception {
         ZombieCrushSagaZombie z;
         int h1, v1;
         boolean match = false;
@@ -1718,7 +1727,7 @@ public class ZombieCrushSagaDataModel extends MiniGameDataModel {
      *
      * @return
      */
-    public void processMove(ZombieCrushSagaZombie zombie_1, int h1, int v1, int times, boolean inGame) {
+    public void processMove(ZombieCrushSagaZombie zombie_1, int h1, int v1, int times, boolean inGame) throws Exception {
         if (!inGame) {
             return;
         }
@@ -1787,7 +1796,7 @@ public class ZombieCrushSagaDataModel extends MiniGameDataModel {
         return levelScore;
     }
 
-    public void shuffleBoard() {
+    public void shuffleBoard() throws Exception {
         ((ZombieCrushSagaMiniGame) (miniGame)).shuffleBoard();
         Collections.shuffle(allZombies);
         int p = 0;

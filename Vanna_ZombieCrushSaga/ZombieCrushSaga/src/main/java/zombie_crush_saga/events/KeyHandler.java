@@ -53,7 +53,11 @@ public class KeyHandler extends KeyAdapter {
         }
         
         if (ke.getKeyCode() == KeyEvent.VK_S) {
-            data.shuffleBoard();
+            try {
+                data.shuffleBoard();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         if (ke.getKeyCode() == KeyEvent.VK_L) {
