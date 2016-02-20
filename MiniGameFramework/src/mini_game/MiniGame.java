@@ -10,9 +10,13 @@ import java.awt.Toolkit;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.awt.image.WritableRaster;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 import java.util.Timer;
 import java.util.TreeMap;
 import java.util.concurrent.locks.ReentrantLock;
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -434,16 +438,15 @@ public abstract class MiniGame
      * Loads an image using the fileName as the full path, returning the
      * constructed and completely loaded Image.
      *
-     * @param fileName full path and name of the location of the image file to
+     * @param imageFile full path and name of the location of the image file to
      * be loaded.
      *
      * @return the loaded Image, with all data fully loaded.
      */
-    public BufferedImage loadImage(String fileName)
-    {
+    public BufferedImage loadImage(File imageFile) throws IOException {
+
         // LOAD THE IMAGE
-        Toolkit tk = Toolkit.getDefaultToolkit();
-        Image img = tk.createImage(fileName);
+        Image img = ImageIO.read(imageFile);
 
         // AND WAIT FOR IT TO BE FULLY IN MEMORY BEFORE RETURNING IT
         MediaTracker tracker = new MediaTracker(window);
@@ -476,11 +479,9 @@ public abstract class MiniGame
      * @return the loaded Image, with all data fully loaded and with colorKey
      * pixels transparent.
      */
-    public BufferedImage loadImageWithColorKey(String fileName, Color colorKey)
-    {
+    public BufferedImage loadImageWithColorKey(File fileName, Color colorKey) throws IOException {
         // LOAD THE IMAGE
-        Toolkit tk = Toolkit.getDefaultToolkit();
-        Image img = tk.createImage(fileName);
+        Image img = ImageIO.read(fileName);
 
         // WAIT FOR IT TO BE FULLY IN MEMORY
         MediaTracker tracker = new MediaTracker(window);

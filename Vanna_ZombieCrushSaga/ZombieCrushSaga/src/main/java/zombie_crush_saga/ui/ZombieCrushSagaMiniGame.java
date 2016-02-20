@@ -1,35 +1,23 @@
 package zombie_crush_saga.ui;
 
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import javax.sound.midi.InvalidMidiDataException;
-import javax.sound.midi.MidiUnavailableException;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import zombie_crush_saga.data.ZombieCrushSagaDataModel;
 import mini_game.MiniGame;
-import static zombie_crush_saga.ZombieCrushSagaConstants.*;
 import mini_game.Sprite;
 import mini_game.SpriteType;
 import properties_manager.PropertiesManager;
 import zombie_crush_saga.ZombieCrushSaga.ZombieCrushSagaPropertyType;
-import zombie_crush_saga.file.ZombieCrushSagaFileManager;
+import zombie_crush_saga.data.ZombieCrushSagaDataModel;
 import zombie_crush_saga.data.ZombieCrushSagaRecord;
-import zombie_crush_saga.events.ExitHandler;
-import zombie_crush_saga.events.KeyHandler;
-import zombie_crush_saga.events.LevelSelectHandler;
-import zombie_crush_saga.events.PlayHandler;
-import zombie_crush_saga.events.PlayLevelHandler;
-import zombie_crush_saga.events.PowerUpsHandler;
-import zombie_crush_saga.events.QuitLevelHandler;
-import zombie_crush_saga.events.ResetHandler;
-import zombie_crush_saga.events.RetryHandler;
-import zombie_crush_saga.events.ScrollHandler;
+import zombie_crush_saga.events.*;
+import zombie_crush_saga.file.ZombieCrushSagaFileManager;
 import zombie_crush_saga.file.utils.FileLoaderUtils;
+
+import javax.swing.*;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import static zombie_crush_saga.ZombieCrushSagaConstants.*;
+import static zombie_crush_saga.file.utils.FileLoaderUtils.loadFile;
 
 public class ZombieCrushSagaMiniGame extends MiniGame {
 
@@ -66,6 +54,7 @@ public class ZombieCrushSagaMiniGame extends MiniGame {
     // - getErrorHandler
     // - getFileManager
     // - isCurrentScreenState
+
     /**
      * Accessor method for getting the player record object, which summarizes
      * the player's record on all levels.
@@ -108,7 +97,6 @@ public class ZombieCrushSagaMiniGame extends MiniGame {
      * testScreenState argument. If it mates, true is returned, else false.
      *
      * @param testScreenState Screen state to test against the current state.
-     *
      * @return true if the current state is testScreenState, false otherwise.
      */
     public boolean isCurrentScreenState(String testScreenState) {
@@ -121,6 +109,7 @@ public class ZombieCrushSagaMiniGame extends MiniGame {
     // - switchToGameScreen
     // - switchToSplashScreen
     // - updateBoundaries
+
     /**
      * This method displays makes the stats dialog display visible, which
      * includes the text inside.
@@ -182,7 +171,7 @@ public class ZombieCrushSagaMiniGame extends MiniGame {
         // TURN OFF DIALOGS
         guiDialogs.get(LOSS_DIALOG_TYPE).setState(INVISIBLE_STATE);
         guiDialogs.get(WIN_DIALOG_TYPE).setState(INVISIBLE_STATE);
-        
+
         // PLAY THE GAMEPLAY SCREEN SONG
         audio.stop(ZombieCrushSagaPropertyType.SPLASH_SCREEN_SONG_CUE.toString());
         audio.play(ZombieCrushSagaPropertyType.GAMEPLAY_SONG_CUE.toString(), true);
@@ -273,8 +262,8 @@ public class ZombieCrushSagaMiniGame extends MiniGame {
         guiButtons.get(QUIT_BUTTON_TYPE).setState(VISIBLE_STATE);
         guiButtons.get(QUIT_BUTTON_TYPE).setEnabled(true);
         if (lower > LEVELS_PER_SCREEN) {
-        guiButtons.get(SCROLL_DOWN_BUTTON_TYPE).setState(VISIBLE_STATE);
-        guiButtons.get(SCROLL_DOWN_BUTTON_TYPE).setEnabled(true);
+            guiButtons.get(SCROLL_DOWN_BUTTON_TYPE).setState(VISIBLE_STATE);
+            guiButtons.get(SCROLL_DOWN_BUTTON_TYPE).setEnabled(true);
         } else {
             guiButtons.get(SCROLL_DOWN_BUTTON_TYPE).setState(INVISIBLE_STATE);
             guiButtons.get(SCROLL_DOWN_BUTTON_TYPE).setEnabled(false);
@@ -446,233 +435,234 @@ public class ZombieCrushSagaMiniGame extends MiniGame {
         PropertiesManager props = PropertiesManager.getPropertiesManager();
         String imgPath = props.getProperty(ZombieCrushSagaPropertyType.IMG_PATH);
         String windowIconFile = props.getProperty(ZombieCrushSagaPropertyType.WINDOW_ICON);
-        img = loadImage(imgPath + windowIconFile);
-        window.setIconImage(img);
+        try {
+            img = loadImage(loadFile(imgPath + windowIconFile));
+            window.setIconImage(img);
 
-        // CONSTRUCT THE PANEL WHERE WE'LL DRAW EVERYTHING
-        canvas = new ZombieCrushSagaPanel(this, (ZombieCrushSagaDataModel) data);
+            // CONSTRUCT THE PANEL WHERE WE'LL DRAW EVERYTHING
+            canvas = new ZombieCrushSagaPanel(this, (ZombieCrushSagaDataModel) data);
 
-        // LOAD THE BACKGROUNDS, WHICH ARE GUI DECOR
-        currentScreenState = SPLASH_SCREEN_STATE;
-        img = loadImage(imgPath + props.getProperty(ZombieCrushSagaPropertyType.SPLASH_SCREEN_IMAGE_NAME));
-        sT = new SpriteType(BACKGROUND_TYPE);
-        s = new Sprite(sT, 0, 0, 0, 0, SPLASH_SCREEN_STATE);
-        sT.addState(SPLASH_SCREEN_STATE, img);
+            // LOAD THE BACKGROUNDS, WHICH ARE GUI DECOR
+            currentScreenState = SPLASH_SCREEN_STATE;
+            img = loadImage(loadFile(imgPath + props.getProperty(ZombieCrushSagaPropertyType.SPLASH_SCREEN_IMAGE_NAME)));
+            sT = new SpriteType(BACKGROUND_TYPE);
+            s = new Sprite(sT, 0, 0, 0, 0, SPLASH_SCREEN_STATE);
+            sT.addState(SPLASH_SCREEN_STATE, img);
 
-        img = loadImage(imgPath + props.getProperty(ZombieCrushSagaPropertyType.GAME_BACKGROUND_IMAGE_NAME));
-        sT.addState(GAME_SCREEN_STATE, img);
+            img = loadImage(loadFile(imgPath + props.getProperty(ZombieCrushSagaPropertyType.GAME_BACKGROUND_IMAGE_NAME)));
+            sT.addState(GAME_SCREEN_STATE, img);
 
-        img = loadImage(imgPath + props.getProperty(ZombieCrushSagaPropertyType.SAGA_SCREEN_IMAGE_NAME));
-        sT.addState(SAGA_SCREEN_STATE, img);
+            img = loadImage(loadFile(imgPath + props.getProperty(ZombieCrushSagaPropertyType.SAGA_SCREEN_IMAGE_NAME)));
+            sT.addState(SAGA_SCREEN_STATE, img);
 
-        img = loadImage(imgPath + props.getProperty(ZombieCrushSagaPropertyType.ABOUT_SCREEN_IMAGE_NAME));
-        sT.addState(ABOUT_SCREEN_STATE, img);
+            img = loadImage(loadFile(imgPath + props.getProperty(ZombieCrushSagaPropertyType.ABOUT_SCREEN_IMAGE_NAME)));
+            sT.addState(ABOUT_SCREEN_STATE, img);
 
-        img = loadImage(imgPath + props.getProperty(ZombieCrushSagaPropertyType.LEVEL_SCORE_SCREEN_IMAGE_NAME));
-        sT.addState(LEVEL_SCORE_SCREEN_STATE, img);
+            img = loadImage(loadFile(imgPath + props.getProperty(ZombieCrushSagaPropertyType.LEVEL_SCORE_SCREEN_IMAGE_NAME)));
+            sT.addState(LEVEL_SCORE_SCREEN_STATE, img);
 
-        ArrayList<String> sagaBackgrounds = props.getPropertyOptionsList(ZombieCrushSagaPropertyType.SAGA_SCREEN_IMAGE_OPTIONS);
+            ArrayList<String> sagaBackgrounds = props.getPropertyOptionsList(ZombieCrushSagaPropertyType.SAGA_SCREEN_IMAGE_OPTIONS);
 
-        for (int i = 0; i < sagaBackgrounds.size(); i++) {
-            img = loadImageWithColorKey(imgPath + sagaBackgrounds.get(i), COLOR_KEY);
-            sT.addState(SAGA_SCREEN_STATE + "_" + (i + 1), img);
-        }
+            for (int i = 0; i < sagaBackgrounds.size(); i++) {
+                img = loadImageWithColorKey(loadFile(imgPath + sagaBackgrounds.get(i)), COLOR_KEY);
+                sT.addState(SAGA_SCREEN_STATE + "_" + (i + 1), img);
+            }
 
-        guiDecor.put(BACKGROUND_TYPE, s);
+            guiDecor.put(BACKGROUND_TYPE, s);
 
-        // THEN THE PLAY BUTTON
-        String playButton = props.getProperty(ZombieCrushSagaPropertyType.PLAY_BUTTON_IMAGE_NAME);
-        sT = new SpriteType(PLAY_BUTTON_TYPE);
-        img = loadImage(imgPath + playButton);
-        sT.addState(VISIBLE_STATE, img);
-        String newMouseOverButton = props.getProperty(ZombieCrushSagaPropertyType.PLAY_BUTTON_MOUSE_OVER_IMAGE_NAME);
-        img = loadImage(imgPath + newMouseOverButton);
-        sT.addState(MOUSE_OVER_STATE, img);
-        s = new Sprite(sT, PLAY_BUTTON_X, PLAY_BUTTON_Y, 0, 0, VISIBLE_STATE);
-        guiButtons.put(PLAY_BUTTON_TYPE, s);
+            // THEN THE PLAY BUTTON
+            String playButton = props.getProperty(ZombieCrushSagaPropertyType.PLAY_BUTTON_IMAGE_NAME);
+            sT = new SpriteType(PLAY_BUTTON_TYPE);
+            img = loadImage(loadFile(imgPath + playButton));
+            sT.addState(VISIBLE_STATE, img);
+            String newMouseOverButton = props.getProperty(ZombieCrushSagaPropertyType.PLAY_BUTTON_MOUSE_OVER_IMAGE_NAME);
+            img = loadImage(loadFile(imgPath + newMouseOverButton));
+            sT.addState(MOUSE_OVER_STATE, img);
+            s = new Sprite(sT, PLAY_BUTTON_X, PLAY_BUTTON_Y, 0, 0, VISIBLE_STATE);
+            guiButtons.put(PLAY_BUTTON_TYPE, s);
 
-        String resetButton = props.getProperty(ZombieCrushSagaPropertyType.RESET_BUTTON_IMAGE_NAME);
-        sT = new SpriteType(RESET_BUTTON_TYPE);
-        img = loadImage(imgPath + resetButton);
-        sT.addState(VISIBLE_STATE, img);
-        String backMouseOverButton = props.getProperty(ZombieCrushSagaPropertyType.RESET_BUTTON_MOUSE_OVER_IMAGE_NAME);
-        img = loadImage(imgPath + backMouseOverButton);
-        sT.addState(MOUSE_OVER_STATE, img);
-        if (record.getHighestLevel() > 0) {
-            s = new Sprite(sT, RESET_BUTTON_X, RESET_BUTTON_Y, 0, 0, VISIBLE_STATE);
-        } else {
-            s = new Sprite(sT, RESET_BUTTON_X, RESET_BUTTON_Y, 0, 0, INVISIBLE_STATE);
-        }
-        guiButtons.put(RESET_BUTTON_TYPE, s);
+            String resetButton = props.getProperty(ZombieCrushSagaPropertyType.RESET_BUTTON_IMAGE_NAME);
+            sT = new SpriteType(RESET_BUTTON_TYPE);
+            img = loadImage(loadFile(imgPath + resetButton));
+            sT.addState(VISIBLE_STATE, img);
+            String backMouseOverButton = props.getProperty(ZombieCrushSagaPropertyType.RESET_BUTTON_MOUSE_OVER_IMAGE_NAME);
+            img = loadImage(loadFile(imgPath + backMouseOverButton));
+            sT.addState(MOUSE_OVER_STATE, img);
+            if (record.getHighestLevel() > 0) {
+                s = new Sprite(sT, RESET_BUTTON_X, RESET_BUTTON_Y, 0, 0, VISIBLE_STATE);
+            } else {
+                s = new Sprite(sT, RESET_BUTTON_X, RESET_BUTTON_Y, 0, 0, INVISIBLE_STATE);
+            }
+            guiButtons.put(RESET_BUTTON_TYPE, s);
 
-        String quitButton = props.getProperty(ZombieCrushSagaPropertyType.QUIT_BUTTON_IMAGE_NAME);
-        sT = new SpriteType(QUIT_BUTTON_TYPE);
-        img = loadImage(imgPath + quitButton);
-        sT.addState(VISIBLE_STATE, img);
-        String quitMouseOverButton = props.getProperty(ZombieCrushSagaPropertyType.QUIT_BUTTON_MOUSE_OVER_IMAGE_NAME);
-        img = loadImage(imgPath + quitMouseOverButton);
-        sT.addState(MOUSE_OVER_STATE, img);
-        s = new Sprite(sT, QUIT_BUTTON_X, QUIT_BUTTON_Y, 0, 0, VISIBLE_STATE);
-        guiButtons.put(QUIT_BUTTON_TYPE, s);
+            String quitButton = props.getProperty(ZombieCrushSagaPropertyType.QUIT_BUTTON_IMAGE_NAME);
+            sT = new SpriteType(QUIT_BUTTON_TYPE);
+            img = loadImage(loadFile(imgPath + quitButton));
+            sT.addState(VISIBLE_STATE, img);
+            String quitMouseOverButton = props.getProperty(ZombieCrushSagaPropertyType.QUIT_BUTTON_MOUSE_OVER_IMAGE_NAME);
+            img = loadImage(loadFile(imgPath + quitMouseOverButton));
+            sT.addState(MOUSE_OVER_STATE, img);
+            s = new Sprite(sT, QUIT_BUTTON_X, QUIT_BUTTON_Y, 0, 0, VISIBLE_STATE);
+            guiButtons.put(QUIT_BUTTON_TYPE, s);
 
-        String scrollUpButton = props.getProperty(ZombieCrushSagaPropertyType.SCROLL_UP_BUTTON_IMAGE_NAME);
-        sT = new SpriteType(SCROLL_UP_BUTTON_TYPE);
-        img = loadImage(imgPath + scrollUpButton);
-        sT.addState(VISIBLE_STATE, img);
-        String scrollUpMouseOverButton = props.getProperty(ZombieCrushSagaPropertyType.SCROLL_UP_BUTTON_MOUSE_OVER_IMAGE_NAME);
-        img = loadImage(imgPath + scrollUpMouseOverButton);
-        sT.addState(MOUSE_OVER_STATE, img);
-        s = new Sprite(sT, SCROLL_UP_BUTTON_X, SCROLL_UP_BUTTON_Y, 0, 0, INVISIBLE_STATE);
-        guiButtons.put(SCROLL_UP_BUTTON_TYPE, s);
+            String scrollUpButton = props.getProperty(ZombieCrushSagaPropertyType.SCROLL_UP_BUTTON_IMAGE_NAME);
+            sT = new SpriteType(SCROLL_UP_BUTTON_TYPE);
+            img = loadImage(loadFile(imgPath + scrollUpButton));
+            sT.addState(VISIBLE_STATE, img);
+            String scrollUpMouseOverButton = props.getProperty(ZombieCrushSagaPropertyType.SCROLL_UP_BUTTON_MOUSE_OVER_IMAGE_NAME);
+            img = loadImage(loadFile(imgPath + scrollUpMouseOverButton));
+            sT.addState(MOUSE_OVER_STATE, img);
+            s = new Sprite(sT, SCROLL_UP_BUTTON_X, SCROLL_UP_BUTTON_Y, 0, 0, INVISIBLE_STATE);
+            guiButtons.put(SCROLL_UP_BUTTON_TYPE, s);
 
-        String scrollDownButton = props.getProperty(ZombieCrushSagaPropertyType.SCROLL_DOWN_BUTTON_IMAGE_NAME);
-        sT = new SpriteType(SCROLL_DOWN_BUTTON_TYPE);
-        img = loadImage(imgPath + scrollDownButton);
-        sT.addState(VISIBLE_STATE, img);
-        String scrollDownMouseOverButton = props.getProperty(ZombieCrushSagaPropertyType.SCROLL_DOWN_BUTTON_MOUSE_OVER_IMAGE_NAME);
-        img = loadImage(imgPath + scrollDownMouseOverButton);
-        sT.addState(MOUSE_OVER_STATE, img);
-        s = new Sprite(sT, SCROLL_DOWN_BUTTON_X, SCROLL_DOWN_BUTTON_Y, 0, 0, INVISIBLE_STATE);
-        guiButtons.put(SCROLL_DOWN_BUTTON_TYPE, s);
+            String scrollDownButton = props.getProperty(ZombieCrushSagaPropertyType.SCROLL_DOWN_BUTTON_IMAGE_NAME);
+            sT = new SpriteType(SCROLL_DOWN_BUTTON_TYPE);
+            img = loadImage(loadFile(imgPath + scrollDownButton));
+            sT.addState(VISIBLE_STATE, img);
+            String scrollDownMouseOverButton = props.getProperty(ZombieCrushSagaPropertyType.SCROLL_DOWN_BUTTON_MOUSE_OVER_IMAGE_NAME);
+            img = loadImage(loadFile(imgPath + scrollDownMouseOverButton));
+            sT.addState(MOUSE_OVER_STATE, img);
+            s = new Sprite(sT, SCROLL_DOWN_BUTTON_X, SCROLL_DOWN_BUTTON_Y, 0, 0, INVISIBLE_STATE);
+            guiButtons.put(SCROLL_DOWN_BUTTON_TYPE, s);
 
-        // THEN THE PLAY LEVEL BUTTON
-        String playLevelButton = props.getProperty(ZombieCrushSagaPropertyType.PLAY_LEVEL_BUTTON_IMAGE_NAME);
-        sT = new SpriteType(PLAY_LEVEL_BUTTON_TYPE);
-        img = loadImage(imgPath + playLevelButton);
-        sT.addState(VISIBLE_STATE, img);
-        String playLevelMouseOverButton = props.getProperty(ZombieCrushSagaPropertyType.PLAY_LEVEL_BUTTON_MOUSE_OVER_IMAGE_NAME);
-        img = loadImage(imgPath + playLevelMouseOverButton);
-        sT.addState(MOUSE_OVER_STATE, img);
-        s = new Sprite(sT, PLAY_LEVEL_BUTTON_X, PLAY_LEVEL_BUTTON_Y, 0, 0, INVISIBLE_STATE);
-        guiButtons.put(PLAY_LEVEL_BUTTON_TYPE, s);
+            // THEN THE PLAY LEVEL BUTTON
+            String playLevelButton = props.getProperty(ZombieCrushSagaPropertyType.PLAY_LEVEL_BUTTON_IMAGE_NAME);
+            sT = new SpriteType(PLAY_LEVEL_BUTTON_TYPE);
+            img = loadImage(loadFile(imgPath + playLevelButton));
+            sT.addState(VISIBLE_STATE, img);
+            String playLevelMouseOverButton = props.getProperty(ZombieCrushSagaPropertyType.PLAY_LEVEL_BUTTON_MOUSE_OVER_IMAGE_NAME);
+            img = loadImage(loadFile(imgPath + playLevelMouseOverButton));
+            sT.addState(MOUSE_OVER_STATE, img);
+            s = new Sprite(sT, PLAY_LEVEL_BUTTON_X, PLAY_LEVEL_BUTTON_Y, 0, 0, INVISIBLE_STATE);
+            guiButtons.put(PLAY_LEVEL_BUTTON_TYPE, s);
 
-        String quitLevelButton = props.getProperty(ZombieCrushSagaPropertyType.QUIT_LEVEL_BUTTON_IMAGE_NAME);
-        sT = new SpriteType(QUIT_LEVEL_BUTTON_TYPE);
-        img = loadImage(imgPath + quitLevelButton);
-        sT.addState(VISIBLE_STATE, img);
-        String quitLevelMouseOverButton = props.getProperty(ZombieCrushSagaPropertyType.QUIT_LEVEL_BUTTON_MOUSE_OVER_IMAGE_NAME);
-        img = loadImage(imgPath + quitLevelMouseOverButton);
-        sT.addState(MOUSE_OVER_STATE, img);
-        s = new Sprite(sT, QUIT_LEVEL_BUTTON_X, QUIT_LEVEL_BUTTON_Y, 0, 0, INVISIBLE_STATE);
-        guiButtons.put(QUIT_LEVEL_BUTTON_TYPE, s);
+            String quitLevelButton = props.getProperty(ZombieCrushSagaPropertyType.QUIT_LEVEL_BUTTON_IMAGE_NAME);
+            sT = new SpriteType(QUIT_LEVEL_BUTTON_TYPE);
+            img = loadImage(loadFile(imgPath + quitLevelButton));
+            sT.addState(VISIBLE_STATE, img);
+            String quitLevelMouseOverButton = props.getProperty(ZombieCrushSagaPropertyType.QUIT_LEVEL_BUTTON_MOUSE_OVER_IMAGE_NAME);
+            img = loadImage(loadFile(imgPath + quitLevelMouseOverButton));
+            sT.addState(MOUSE_OVER_STATE, img);
+            s = new Sprite(sT, QUIT_LEVEL_BUTTON_X, QUIT_LEVEL_BUTTON_Y, 0, 0, INVISIBLE_STATE);
+            guiButtons.put(QUIT_LEVEL_BUTTON_TYPE, s);
 
-        // THE RETRY BUTTON
-        String retryButton = props.getProperty(ZombieCrushSagaPropertyType.RETRY_BUTTON_IMAGE_NAME);
-        sT = new SpriteType(RETRY_BUTTON_TYPE);
-        img = loadImage(imgPath + retryButton);
-        sT.addState(VISIBLE_STATE, img);
-        String retryMouseOverButton = props.getProperty(ZombieCrushSagaPropertyType.RETRY_BUTTON_MOUSE_OVER_IMAGE_NAME);
-        img = loadImage(imgPath + retryMouseOverButton);
-        sT.addState(MOUSE_OVER_STATE, img);
-        s = new Sprite(sT, PLAY_LEVEL_BUTTON_X, PLAY_LEVEL_BUTTON_Y, 0, 0, INVISIBLE_STATE);
-        guiButtons.put(RETRY_BUTTON_TYPE, s);
+            // THE RETRY BUTTON
+            String retryButton = props.getProperty(ZombieCrushSagaPropertyType.RETRY_BUTTON_IMAGE_NAME);
+            sT = new SpriteType(RETRY_BUTTON_TYPE);
+            img = loadImage(loadFile(imgPath + retryButton));
+            sT.addState(VISIBLE_STATE, img);
+            String retryMouseOverButton = props.getProperty(ZombieCrushSagaPropertyType.RETRY_BUTTON_MOUSE_OVER_IMAGE_NAME);
+            img = loadImage(loadFile(imgPath + retryMouseOverButton));
+            sT.addState(MOUSE_OVER_STATE, img);
+            s = new Sprite(sT, PLAY_LEVEL_BUTTON_X, PLAY_LEVEL_BUTTON_Y, 0, 0, INVISIBLE_STATE);
+            guiButtons.put(RETRY_BUTTON_TYPE, s);
 
-        x = LEVELS_INIT_X;
-        y = LEVELS_INIT_Y;
-        int j = 0;
-        String levelImagePath = props.getProperty(ZombieCrushSagaPropertyType.BLANK_LEVEL_IMAGE_NAME);
-        String levelMouseOverImageName = props.getProperty(ZombieCrushSagaPropertyType.BLANK_LEVEL_MOUSE_OVER_IMAGE_NAME);
-        for (int i = 0; i < LEVELS; i++) {
+            x = LEVELS_INIT_X;
+            y = LEVELS_INIT_Y;
+            int j = 0;
+            String levelImagePath = props.getProperty(ZombieCrushSagaPropertyType.BLANK_LEVEL_IMAGE_NAME);
+            String levelMouseOverImageName = props.getProperty(ZombieCrushSagaPropertyType.BLANK_LEVEL_MOUSE_OVER_IMAGE_NAME);
+            for (int i = 0; i < LEVELS; i++) {
             /* if (x > LEVELS_BOUND_X & y < LEVELS_BOUND_Y) {
              } else */
-            if (x > LEVELS_BOUND_X || x < LEVELS_INIT_X) {
-                x -= Math.pow(-1, j) * LEVELS_INC_X;
-                y -= LEVELS_INC_Y;
-                j++;
+                if (x > LEVELS_BOUND_X || x < LEVELS_INIT_X) {
+                    x -= Math.pow(-1, j) * LEVELS_INC_X;
+                    y -= LEVELS_INC_Y;
+                    j++;
+                }
+                if (y < LEVELS_BOUND_Y) {
+                    j = 0;
+                    x = LEVELS_INIT_X;
+                    y = LEVELS_INIT_Y;
+                }
+                sT = new SpriteType(LEVEL_SELECT_BUTTON_TYPE);
+                img = loadImageWithColorKey(loadFile(imgPath + levelImagePath), COLOR_KEY);
+                sT.addState(VISIBLE_STATE, img);
+
+                levelImagePath = props.getProperty(ZombieCrushSagaPropertyType.BLANK_LEVEL_IMAGE_NAME);
+                img = loadImageWithColorKey(loadFile(imgPath + levelMouseOverImageName), COLOR_KEY);
+                sT.addState(MOUSE_OVER_STATE, img);
+
+                s = new Sprite(sT, x, y, 0, 0, INVISIBLE_STATE);
+                guiButtons.put("LEVEL_" + (i + 1), s);
+                x += Math.pow(-1, j) * LEVELS_INC_X;
             }
-            if (y < LEVELS_BOUND_Y) {
-                j = 0;
-                x = LEVELS_INIT_X;
-                y = LEVELS_INIT_Y;
-            }
-            sT = new SpriteType(LEVEL_SELECT_BUTTON_TYPE);
-            img = loadImageWithColorKey(imgPath + levelImagePath, COLOR_KEY);
+            lower = 1;
+            upper = 15;
+
+            // NOW THE PROGRESS BAR, BOTTOM RIGHT
+            sT = new SpriteType(PROGRESS_TYPE);
+            img = loadImage(loadFile("../img/zomcrush/UIZomcrushProgressBar.png"));
             sT.addState(VISIBLE_STATE, img);
-
-            levelImagePath = props.getProperty(ZombieCrushSagaPropertyType.BLANK_LEVEL_IMAGE_NAME);
-            img = loadImageWithColorKey(imgPath + levelMouseOverImageName, COLOR_KEY);
-            sT.addState(MOUSE_OVER_STATE, img);
-
+            x = 1200 - 315;
+            y = 150;
             s = new Sprite(sT, x, y, 0, 0, INVISIBLE_STATE);
-            guiButtons.put("LEVEL_" + (i + 1), s);
-            x += Math.pow(-1, j) * LEVELS_INC_X;
-        }
-        lower = 1;
-        upper = 15;
+            guiDecor.put(PROGRESS_TYPE, s);
 
-        // NOW THE PROGRESS BAR, BOTTOM RIGHT
-        sT = new SpriteType(PROGRESS_TYPE);
-        img = loadImage("./img/zomcrush/UIZomcrushProgressBar.png");
-        sT.addState(VISIBLE_STATE, img);
-        x = 1200 - 315;
-        y = 150;
-        s = new Sprite(sT, x, y, 0, 0, INVISIBLE_STATE);
-        guiDecor.put(PROGRESS_TYPE, s);
+            // ADD THE CONTROLS ALONG THE NORTH OF THE GAME SCREEN AND POWER UPS DISPLAY
+            String powerUps = props.getProperty(ZombieCrushSagaPropertyType.POWER_UPS_IMAGE_NAME);
+            sT = new SpriteType(POWER_UPS_BUTTON_TYPE);
+            img = loadImage(loadFile(imgPath + powerUps));
+            sT.addState(VISIBLE_STATE, img);
+            String powerUpsMouseOverButton = props.getProperty(ZombieCrushSagaPropertyType.POWER_UPS_MOUSE_OVER_IMAGE_NAME);
+            img = loadImage(loadFile(imgPath + powerUpsMouseOverButton));
+            sT.addState(MOUSE_OVER_STATE, img);
+            s = new Sprite(sT, POWER_UPS_X, 0, 0, 0, INVISIBLE_STATE);
+            guiButtons.put(POWER_UPS_BUTTON_TYPE, s);
 
-        // ADD THE CONTROLS ALONG THE NORTH OF THE GAME SCREEN AND POWER UPS DISPLAY
-        String powerUps = props.getProperty(ZombieCrushSagaPropertyType.POWER_UPS_IMAGE_NAME);
-        sT = new SpriteType(POWER_UPS_BUTTON_TYPE);
-        img = loadImage(imgPath + powerUps);
-        sT.addState(VISIBLE_STATE, img);
-        String powerUpsMouseOverButton = props.getProperty(ZombieCrushSagaPropertyType.POWER_UPS_MOUSE_OVER_IMAGE_NAME);
-        img = loadImage(imgPath + powerUpsMouseOverButton);
-        sT.addState(MOUSE_OVER_STATE, img);
-        s = new Sprite(sT, POWER_UPS_X, 0, 0, 0, INVISIBLE_STATE);
-        guiButtons.put(POWER_UPS_BUTTON_TYPE, s);
+            // AND THE CONTAINERS
+            String scoreContainer = props.getProperty(ZombieCrushSagaPropertyType.BLANK_COUNT_IMAGE_NAME);
+            sT = new SpriteType(SCORE_CONTAINER_TYPE);
+            img = loadImage(loadFile(imgPath + scoreContainer));
+            sT.addState(VISIBLE_STATE, img);
+            s = new Sprite(sT, SCORE_CONTAINER_X, 0, 0, 0, INVISIBLE_STATE);
+            guiDecor.put(SCORE_CONTAINER_TYPE, s);
 
-        // AND THE CONTAINERS
-        String scoreContainer = props.getProperty(ZombieCrushSagaPropertyType.BLANK_COUNT_IMAGE_NAME);
-        sT = new SpriteType(SCORE_CONTAINER_TYPE);
-        img = loadImage(imgPath + scoreContainer);
-        sT.addState(VISIBLE_STATE, img);
-        s = new Sprite(sT, SCORE_CONTAINER_X, 0, 0, 0, INVISIBLE_STATE);
-        guiDecor.put(SCORE_CONTAINER_TYPE, s);
+            String moveContainer = props.getProperty(ZombieCrushSagaPropertyType.BLANK_COUNT_IMAGE_NAME);
+            sT = new SpriteType(MOVES_CONTAINER_TYPE);
+            img = loadImage(loadFile(imgPath + moveContainer));
+            sT.addState(VISIBLE_STATE, img);
+            s = new Sprite(sT, MOVES_CONTAINER_X, 0, 0, 0, INVISIBLE_STATE);
+            guiDecor.put(MOVES_CONTAINER_TYPE, s);
 
-        String moveContainer = props.getProperty(ZombieCrushSagaPropertyType.BLANK_COUNT_IMAGE_NAME);
-        sT = new SpriteType(MOVES_CONTAINER_TYPE);
-        img = loadImage(imgPath + moveContainer);
-        sT.addState(VISIBLE_STATE, img);
-        s = new Sprite(sT, MOVES_CONTAINER_X, 0, 0, 0, INVISIBLE_STATE);
-        guiDecor.put(MOVES_CONTAINER_TYPE, s);
+            String scoreCount = props.getProperty(ZombieCrushSagaPropertyType.SCORE_COUNT_IMAGE_NAME);
+            sT = new SpriteType(SCORE_COUNT_TYPE);
+            img = loadImage(loadFile(imgPath + scoreCount));
+            sT.addState(VISIBLE_STATE, img);
+            s = new Sprite(sT, SCORE_COUNT_X, 0, 0, 0, INVISIBLE_STATE);
+            guiDecor.put(SCORE_COUNT_TYPE, s);
 
-        String scoreCount = props.getProperty(ZombieCrushSagaPropertyType.SCORE_COUNT_IMAGE_NAME);
-        sT = new SpriteType(SCORE_COUNT_TYPE);
-        img = loadImage(imgPath + scoreCount);
-        sT.addState(VISIBLE_STATE, img);
-        s = new Sprite(sT, SCORE_COUNT_X, 0, 0, 0, INVISIBLE_STATE);
-        guiDecor.put(SCORE_COUNT_TYPE, s);
+            String moveCount = props.getProperty(ZombieCrushSagaPropertyType.MOVES_COUNT_IMAGE_NAME);
+            sT = new SpriteType(MOVES_COUNT_TYPE);
+            img = loadImage(loadFile(imgPath + moveCount));
+            sT.addState(VISIBLE_STATE, img);
+            s = new Sprite(sT, MOVES_COUNT_X, 0, 0, 0, INVISIBLE_STATE);
+            guiDecor.put(MOVES_COUNT_TYPE, s);
 
-        String moveCount = props.getProperty(ZombieCrushSagaPropertyType.MOVES_COUNT_IMAGE_NAME);
-        sT = new SpriteType(MOVES_COUNT_TYPE);
-        img = loadImage(imgPath + moveCount);
-        sT.addState(VISIBLE_STATE, img);
-        s = new Sprite(sT, MOVES_COUNT_X, 0, 0, 0, INVISIBLE_STATE);
-        guiDecor.put(MOVES_COUNT_TYPE, s);
+            String oneStar = props.getProperty(ZombieCrushSagaPropertyType.STAR_IMAGE_NAME);
+            sT = new SpriteType(ONE_STAR_TYPE);
+            img = loadImageWithColorKey(loadFile(imgPath + oneStar), COLOR_KEY);
+            sT.addState(VISIBLE_STATE, img);
+            x = STAR_X;
+            y = STAR_Y;
+            s = new Sprite(sT, x, y, 0, 0, INVISIBLE_STATE);
+            guiDecor.put(ONE_STAR_TYPE, s);
 
-        String oneStar = props.getProperty(ZombieCrushSagaPropertyType.STAR_IMAGE_NAME);
-        sT = new SpriteType(ONE_STAR_TYPE);
-        img = loadImageWithColorKey(imgPath + oneStar, COLOR_KEY);
-        sT.addState(VISIBLE_STATE, img);
-        x = STAR_X;
-        y = STAR_Y;
-        s = new Sprite(sT, x, y, 0, 0, INVISIBLE_STATE);
-        guiDecor.put(ONE_STAR_TYPE, s);
+            sT = new SpriteType(TWO_STAR_TYPE);
+            img = loadImageWithColorKey(loadFile(imgPath + oneStar), COLOR_KEY);
+            sT.addState(VISIBLE_STATE, img);
+            x = STAR_X + STAR_OFFSET;
+            y = STAR_Y;
+            s = new Sprite(sT, x, y, 0, 0, INVISIBLE_STATE);
+            guiDecor.put(TWO_STAR_TYPE, s);
 
-        sT = new SpriteType(TWO_STAR_TYPE);
-        img = loadImageWithColorKey(imgPath + oneStar, COLOR_KEY);
-        sT.addState(VISIBLE_STATE, img);
-        x = STAR_X + STAR_OFFSET;
-        y = STAR_Y;
-        s = new Sprite(sT, x, y, 0, 0, INVISIBLE_STATE);
-        guiDecor.put(TWO_STAR_TYPE, s);
-
-        sT = new SpriteType(THREE_STAR_TYPE);
-        img = loadImageWithColorKey(imgPath + oneStar, COLOR_KEY);
-        sT.addState(VISIBLE_STATE, img);
-        x = STAR_X + 2 * STAR_OFFSET;
-        y = STAR_Y;
-        s = new Sprite(sT, x, y, 0, 0, INVISIBLE_STATE);
-        guiDecor.put(THREE_STAR_TYPE, s);
+            sT = new SpriteType(THREE_STAR_TYPE);
+            img = loadImageWithColorKey(loadFile(imgPath + oneStar), COLOR_KEY);
+            sT.addState(VISIBLE_STATE, img);
+            x = STAR_X + 2 * STAR_OFFSET;
+            y = STAR_Y;
+            s = new Sprite(sT, x, y, 0, 0, INVISIBLE_STATE);
+            guiDecor.put(THREE_STAR_TYPE, s);
 
         /*
          // AND THE STATS DISPLAY
@@ -685,28 +675,31 @@ public class ZombieCrushSagaMiniGame extends MiniGame {
          s = new Sprite(sT, x, y, 0, 0, INVISIBLE_STATE);
          guiDialogs.put(STATS_DIALOG_TYPE, s);
          * */
-        // AND THE WIN CONDITION DISPLAY
-        String winDisplay = props.getProperty(ZombieCrushSagaPropertyType.WIN_DIALOG_IMAGE_NAME);
-        sT = new SpriteType(WIN_DIALOG_TYPE);
-        img = loadImageWithColorKey(imgPath + winDisplay, COLOR_KEY);
-        sT.addState(VISIBLE_STATE, img);
-        x = (data.getGameWidth() / 2) - (img.getWidth(null) / 2);
-        y = (data.getGameHeight() / 2) - (img.getHeight(null) / 2);
-        s = new Sprite(sT, x, y, 0, 0, INVISIBLE_STATE);
-        guiDialogs.put(WIN_DIALOG_TYPE, s);
-        // LOSS CONDITION DISPLAY
-        String lossDisplay = props.getProperty(ZombieCrushSagaPropertyType.LOSS_DIALOG_IMAGE_NAME);
-        sT = new SpriteType(LOSS_DIALOG_TYPE);
-        img = loadImageWithColorKey(imgPath + lossDisplay, COLOR_KEY);
+            // AND THE WIN CONDITION DISPLAY
+            String winDisplay = props.getProperty(ZombieCrushSagaPropertyType.WIN_DIALOG_IMAGE_NAME);
+            sT = new SpriteType(WIN_DIALOG_TYPE);
+            img = loadImageWithColorKey(loadFile(imgPath + winDisplay), COLOR_KEY);
+            sT.addState(VISIBLE_STATE, img);
+            x = (data.getGameWidth() / 2) - (img.getWidth(null) / 2);
+            y = (data.getGameHeight() / 2) - (img.getHeight(null) / 2);
+            s = new Sprite(sT, x, y, 0, 0, INVISIBLE_STATE);
+            guiDialogs.put(WIN_DIALOG_TYPE, s);
+            // LOSS CONDITION DISPLAY
+            String lossDisplay = props.getProperty(ZombieCrushSagaPropertyType.LOSS_DIALOG_IMAGE_NAME);
+            sT = new SpriteType(LOSS_DIALOG_TYPE);
+            img = loadImageWithColorKey(loadFile(imgPath + lossDisplay), COLOR_KEY);
 
-        sT.addState(VISIBLE_STATE, img);
-        x = (data.getGameWidth() / 2) - (img.getWidth(null) / 2);
-        y = (data.getGameHeight() / 2) - (img.getHeight(null) / 2);
-        s = new Sprite(sT, x, y, 0, 0, INVISIBLE_STATE);
+            sT.addState(VISIBLE_STATE, img);
+            x = (data.getGameWidth() / 2) - (img.getWidth(null) / 2);
+            y = (data.getGameHeight() / 2) - (img.getHeight(null) / 2);
+            s = new Sprite(sT, x, y, 0, 0, INVISIBLE_STATE);
 
-        guiDialogs.put(LOSS_DIALOG_TYPE, s);
-        // THEN THE TILES STACKED TO THE TOP LEFT
-        //((ZombieCrushSagaDataModel) data).initZombies();
+            guiDialogs.put(LOSS_DIALOG_TYPE, s);
+            // THEN THE TILES STACKED TO THE TOP LEFT
+            //((ZombieCrushSagaDataModel) data).initZombies();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -831,33 +824,33 @@ public class ZombieCrushSagaMiniGame extends MiniGame {
                 lower += 15;
                 guiButtons.get(SCROLL_UP_BUTTON_TYPE).setEnabled(false);
                 guiButtons.get(SCROLL_UP_BUTTON_TYPE).setState(INVISIBLE_STATE);
-                } else {
-                    lower += 15;
-                    upper += 15;
-                }
-                if (currentSagaScreen < NUM_BACKGROUNDS) {
-                    currentSagaScreen++;
-                }
+            } else {
+                lower += 15;
+                upper += 15;
+            }
+            if (currentSagaScreen < NUM_BACKGROUNDS) {
+                currentSagaScreen++;
+            }
             guiButtons.get(SCROLL_DOWN_BUTTON_TYPE).setEnabled(true);
             guiButtons.get(SCROLL_DOWN_BUTTON_TYPE).setState(VISIBLE_STATE);
-            }
+        }
 
         if (direction.equals(SCROLL_DOWN_BUTTON_TYPE)) {
-                    if ((lower - 15) < 1) {
-                        lower = 1;
-                        upper = 15;
+            if ((lower - 15) < 1) {
+                lower = 1;
+                upper = 15;
                 guiButtons.get(SCROLL_DOWN_BUTTON_TYPE).setEnabled(false);
                 guiButtons.get(SCROLL_DOWN_BUTTON_TYPE).setState(INVISIBLE_STATE);
-                    } else {
-                        upper = lower - 1;
-                        lower -= 15;
-                    }
+            } else {
+                upper = lower - 1;
+                lower -= 15;
+            }
             guiButtons.get(SCROLL_UP_BUTTON_TYPE).setEnabled(true);
             guiButtons.get(SCROLL_UP_BUTTON_TYPE).setState(VISIBLE_STATE);
-                if (currentSagaScreen > 2) {
-                    currentSagaScreen--;
-                }
+            if (currentSagaScreen > 2) {
+                currentSagaScreen--;
             }
+        }
 
         for (int i = lower; i <= upper; i++) {
             if (i > highestLevel)
