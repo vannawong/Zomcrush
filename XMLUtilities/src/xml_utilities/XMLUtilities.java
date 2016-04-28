@@ -2,6 +2,7 @@ package xml_utilities;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.zip.ZipFile;
 import javax.xml.parsers.DocumentBuilder;
@@ -45,27 +46,26 @@ public class XMLUtilities
      * otherwise. Note that this is taken directly (with comments)
      * from and example on the IBM site with only slight modifications.
      * 
-     * @see http://www.ibm.com/developerworks/xml/library/x-javaxmlvalidapi/index.html
+     * @see https://www.ibm.com/developerworks/xml/library/x-javaxmlvalidapi/index.html
      * 
-     * @param xmlDocNameAndPath XML Doc to validate
+     * @param schemaLocation XML Doc to validate
      * 
-     * @param xmlSchemaNameAndPath XML Schema to use in validation
+     * @param xmlDocNameAndPath XML Schema to use in validation
      * 
      * @return true if the xml doc is validate, false if it does not.
      */
-    public boolean validateXMLDoc(  String xmlDocNameAndPath,
-                                    String xmlSchemaNameAndPath)
+    public boolean validateXMLDoc(  File xmlDocNameAndPath,
+                                    File schemaLocation)
     {
         try
         {
             // 1. Lookup a factory for the W3C XML Schema language
             SchemaFactory factory = 
                     SchemaFactory.newInstance(SCHEMA_STANDARD_SPEC_URL);
-            
-            // 2. Compile the schema. 
-            // Here the schema is loaded from a java.io.File, but you could use 
+
+            // 2. Compile the schema.
+            // Here the schema is loaded from a java.io.File, but you could use
             // a java.net.URL or a javax.xml.transform.Source instead.
-            File schemaLocation = new File(xmlSchemaNameAndPath);
             Schema schema = factory.newSchema(schemaLocation);
             
             // 3. Get a validator from the schema.
@@ -80,7 +80,7 @@ public class XMLUtilities
         }
         // FOR ANY EXCEPTION THAT OCCURS WE'LL BLAME
         // IT ON AN INVALID XML FILE
-        catch (SAXException | IOException e) 
+        catch (SAXException | IOException e)
         {
             return false;
         }          
@@ -91,24 +91,24 @@ public class XMLUtilities
      * schemaFile, and if valid, loads it into a WhitespaceFreeXMLDoc
      * and returns it, which helps because that's a much easier
      * format for us to deal with.
-     * 
+
      * @param xmlFile Path and name of xml file to load.
-     * 
-     * @param schemaFile Path and name of schema file to use for validation.
+     *
+     * @param xsdFile Path and name of schema file to use for validation.
      * 
      * @return A normalized Document object fully loaded with the data found
      * in the xmlFile.
      * 
      * @throws InvalidXMLFileFormatException Thrown if the xml file validation fails.
      */
-    public Document loadXMLDocument(String xmlFile, String xsdFile)
+    public Document loadXMLDocument(File xmlFile, File xsdFile)
             throws InvalidXMLFileFormatException
     {
         // FIRST VALIDATE
         boolean isValid = validateXMLDoc(xmlFile, xsdFile);
         if (!isValid)
         {
-            throw new InvalidXMLFileFormatException(xmlFile, xsdFile);
+            throw new InvalidXMLFileFormatException(xmlFile.getName(), xsdFile.getName());
         }
         
         // THIS IS JAVA API STUFF
@@ -128,7 +128,7 @@ public class XMLUtilities
         // OR IS NOW WHERE AND WHAT WE SAY IT IS
         catch(ParserConfigurationException | SAXException | IOException pce)
         {
-            throw new InvalidXMLFileFormatException(xmlFile);
+            throw new InvalidXMLFileFormatException(xmlFile.getName());
         }           
     }   
     

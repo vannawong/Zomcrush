@@ -1,5 +1,6 @@
 package properties_manager;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.w3c.dom.Document;
@@ -128,17 +129,9 @@ public class PropertiesManager
      * @throws InvalidXMLFileFormatException This is thrown if the XML file
      * is invalid.
      */
-    public void loadProperties(String xmlDataFile, String xmlSchemaFile)
+    public void loadProperties(File xmlDataFile, File xmlSchemaFile)
             throws InvalidXMLFileFormatException
-    {
-
-        String dataPath = getProperty(DATA_PATH_PROPERTY);
- 
-        // ADD THE DATA PATH
-        xmlDataFile = dataPath + xmlDataFile;
-        xmlSchemaFile = dataPath + xmlSchemaFile;
-        
-        // FIRST LOAD THE FILE
+    {// FIRST LOAD THE FILE
         Document doc = xmlUtil.loadXMLDocument(xmlDataFile, xmlSchemaFile);
         
         // NOW LOAD ALL THE PROPERTIES

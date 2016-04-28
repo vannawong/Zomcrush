@@ -43,12 +43,11 @@ public class AudioManager
    //     mp3Audio = new HashMap();
     }
     
-    public void loadAudio(String audioName, String audioFileName) throws UnsupportedAudioFileException, IOException, LineUnavailableException, InvalidMidiDataException, MidiUnavailableException
+    public void loadAudio(File audioFile, String audioName, String audioFileName) throws UnsupportedAudioFileException, IOException, LineUnavailableException, InvalidMidiDataException, MidiUnavailableException
     {
         if (audioFileName.endsWith(".wav"))
         {
-            File soundFile = new File(audioFileName);
-            AudioInputStream sound = AudioSystem.getAudioInputStream(soundFile);
+            AudioInputStream sound = AudioSystem.getAudioInputStream(audioFile);
             
             // load the sound into memory (a Clip)
             DataLine.Info info = new DataLine.Info(Clip.class, sound.getFormat());
@@ -58,7 +57,7 @@ public class AudioManager
         }
         else if (audioFileName.endsWith(".mid"))
         {
-            Sequence sequence = MidiSystem.getSequence(new File(audioFileName));
+            Sequence sequence = MidiSystem.getSequence(audioFile);
             Sequencer sequencer = MidiSystem.getSequencer();
             sequencer.open();
             sequencer.setSequence(sequence);

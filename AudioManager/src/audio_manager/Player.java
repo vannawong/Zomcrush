@@ -5,6 +5,7 @@
 package audio_manager;
 
 import javax.swing.JOptionPane;
+import java.io.File;
 
 /**
  *
@@ -17,7 +18,8 @@ public class Player
         AudioManager audio = new AudioManager();
         try
         {
-            audio.loadAudio("NA", "NA.mid");
+            File audioFile = new File(Player.class.getResource("Na.mid").toURI());
+            audio.loadAudio(audioFile, "NA", "NA.mid");
             audio.play("NA", true);
         }
         catch(Exception e)

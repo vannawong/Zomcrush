@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ZombieCrushSaga">
+    <output-path>$PROJECT_DIR$/ZombieCrushSaga/build/artifacts/ZombieCrushSaga</output-path>
+    <root id="archive" name="ZombieCrushSaga.jar">
+      <element id="module-output" name="Vanna_ZombieCrushSaga" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/ZombieCrushSaga/manifest.mf" output-file-name="MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>
