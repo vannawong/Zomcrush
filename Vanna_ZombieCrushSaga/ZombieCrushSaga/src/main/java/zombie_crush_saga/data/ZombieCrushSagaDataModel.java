@@ -1063,7 +1063,7 @@ public class ZombieCrushSagaDataModel extends MiniGameDataModel {
             }
         }
 
-        int p = 1;
+        int p;
         int tempC = 0;
 
         //for (int i = 0; i < gridRows; i++) {

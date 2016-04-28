@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="ZombieCrushSaga" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="81559e3c-4737-4f68-922d-c096a962e27c" name="Default" comment="" />
     <ignored path="Vanna_ZombieCrushSaga.iws" />
@@ -33,6 +38,26 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="ZombieCrushSagaConstants.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/ZombieCrushSagaConstants.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.862069">
+              <caret line="112" column="41" selection-start-line="112" selection-start-column="32" selection-end-line="112" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ZombieCrushSagaZombie.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/ui/ZombieCrushSagaZombie.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="221" column="54" selection-start-line="221" selection-start-column="54" selection-end-line="221" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="ZombieCrushSagaMiniGame.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/ui/ZombieCrushSagaMiniGame.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -50,38 +75,28 @@
       <file leaf-file-name="ZombieCrushSagaPanel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/ui/ZombieCrushSagaPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.3448277">
+            <state vertical-scroll-proportion="0.0">
               <caret line="217" column="31" selection-start-line="217" selection-start-column="31" selection-end-line="217" selection-end-column="31" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ZombieCrushSagaDataModel.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ZombieCrushSagaDataModel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/data/ZombieCrushSagaDataModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="1814" column="35" selection-start-line="1814" selection-start-column="35" selection-end-line="1814" selection-end-column="35" />
+            <state vertical-scroll-proportion="0.55097085">
+              <caret line="1240" column="27" selection-start-line="1240" selection-start-column="27" selection-end-line="1240" selection-end-column="27" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="KeyHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/events/KeyHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="58" column="16" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ZombieCrushSagaFileManager.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ZombieCrushSagaFileManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/file/ZombieCrushSagaFileManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5325301">
-              <caret line="64" column="36" selection-start-line="64" selection-start-column="36" selection-end-line="64" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="65" column="12" selection-start-line="65" selection-start-column="12" selection-end-line="65" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -92,7 +107,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="45" column="28" selection-start-line="45" selection-start-column="28" selection-end-line="45" selection-end-column="28" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -100,7 +117,7 @@
       <file leaf-file-name="properties.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/resources/data/properties.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.0">
+            <state vertical-scroll-proportion="0.0">
               <caret line="16" column="61" selection-start-line="16" selection-start-column="61" selection-end-line="16" selection-end-column="61" />
               <folding />
             </state>
@@ -146,11 +163,18 @@
         <option value="$PROJECT_DIR$/../MiniGameFramework/dist/MiniGameFramework.jar!/mini_game/MiniGame.class" />
         <option value="$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/ui/ZombieCrushSagaMiniGame.java" />
         <option value="$PROJECT_DIR$/ZombieCrushSaga/src/main/resources/data/properties.xml" />
-        <option value="$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/data/ZombieCrushSagaDataModel.java" />
         <option value="$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/events/KeyHandler.java" />
         <option value="$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/ui/ZombieCrushSagaPanel.java" />
         <option value="$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/file/ZombieCrushSagaFileManager.java" />
+        <option value="$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/data/ZombieCrushSagaDataModel.java" />
       </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Bundled (Maven 3)" />
+      </MavenGeneralSettings>
     </option>
   </component>
   <component name="ProjectFrameBounds">
@@ -184,8 +208,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -486,16 +511,16 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../MiniGameFramework" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/ZombieCrushSaga/manifest.mf" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="SearchEverywhereHistoryKey" value="constants&#9;PSI&#9;JAVA://zombie_crush_saga.ZombieCrushSagaConstants" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -815,11 +840,11 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3246951" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3246951" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18767908" sideWeight="0.491453" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -861,6 +886,88 @@
     <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/ZombieCrushSaga.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/ui/ZombieCrushSagaMiniGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="358" column="0" selection-start-line="358" selection-start-column="0" selection-end-line="358" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#8990#8991#0" expanded="true" />
+            <element signature="e#9090#9091#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/ui/ZombieCrushSagaPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="217" column="31" selection-start-line="217" selection-start-column="31" selection-end-line="217" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/data/ZombieCrushSagaDataModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1814" column="35" selection-start-line="1814" selection-start-column="35" selection-end-line="1814" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/events/KeyHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="58" column="16" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/file/ZombieCrushSagaFileManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/events/LevelSelectHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="45" column="28" selection-start-line="45" selection-start-column="28" selection-end-line="45" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/resources/data/properties.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="61" selection-start-line="16" selection-start-column="61" selection-end-line="16" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/file/utils/FileLoaderUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/ZombieCrushSaga.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
           <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -872,7 +979,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="17" column="61" selection-start-line="17" selection-start-column="61" selection-end-line="17" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -892,7 +998,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="176" column="25" selection-start-line="176" selection-start-column="25" selection-end-line="176" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -900,30 +1005,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="994" column="26" selection-start-line="994" selection-start-column="26" selection-end-line="994" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#114676#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#16270#16271#0" expanded="false" />
-            <element signature="e#16344#16345#0" expanded="false" />
-            <element signature="e#48356#48357#0" expanded="false" />
-            <element signature="e#48422#48423#0" expanded="false" />
-            <element signature="e#64915#64916#0" expanded="false" />
-            <element signature="e#64960#64961#0" expanded="false" />
-            <element signature="e#72180#72181#0" expanded="false" />
-            <element signature="e#72222#72223#0" expanded="false" />
-            <element signature="e#74200#74201#0" expanded="false" />
-            <element signature="e#74284#74285#0" expanded="false" />
-            <element signature="e#77573#77574#0" expanded="false" />
-            <element signature="e#77641#77642#0" expanded="false" />
-            <element signature="e#82100#82101#0" expanded="false" />
-            <element signature="e#82127#82128#0" expanded="false" />
-            <element signature="e#85928#85929#0" expanded="false" />
-            <element signature="e#85955#85956#0" expanded="false" />
-            <element signature="e#94008#94009#0" expanded="false" />
-            <element signature="e#94074#94075#0" expanded="false" />
-            <element signature="e#99990#99991#0" expanded="false" />
-            <element signature="e#100025#100026#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -931,7 +1012,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="47" column="18" selection-start-line="47" selection-start-column="18" selection-end-line="47" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -939,7 +1019,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -965,15 +1044,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="80" column="11" selection-start-line="80" selection-start-column="11" selection-end-line="80" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#3372#0" expanded="false" />
-            <element signature="e#2104#2105#0" expanded="false" />
-            <element signature="e#2132#2133#0" expanded="false" />
-            <element signature="e#2299#2300#0" expanded="false" />
-            <element signature="e#2340#2341#0" expanded="false" />
-            <element signature="e#2574#2575#0" expanded="false" />
-            <element signature="e#2602#2603#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1024,7 +1094,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.43269232">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1039,15 +1108,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="80" column="11" selection-start-line="80" selection-start-column="11" selection-end-line="80" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#3372#0" expanded="false" />
-            <element signature="e#2104#2105#0" expanded="false" />
-            <element signature="e#2132#2133#0" expanded="false" />
-            <element signature="e#2299#2300#0" expanded="false" />
-            <element signature="e#2340#2341#0" expanded="false" />
-            <element signature="e#2574#2575#0" expanded="false" />
-            <element signature="e#2602#2603#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1055,7 +1115,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="17" column="61" selection-start-line="17" selection-start-column="61" selection-end-line="17" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1063,7 +1122,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1078,7 +1136,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.038659792">
           <caret line="47" column="18" selection-start-line="47" selection-start-column="18" selection-end-line="47" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1086,30 +1143,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.036144577">
           <caret line="994" column="26" selection-start-line="994" selection-start-column="26" selection-end-line="994" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#114676#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#16270#16271#0" expanded="false" />
-            <element signature="e#16344#16345#0" expanded="false" />
-            <element signature="e#48356#48357#0" expanded="false" />
-            <element signature="e#48422#48423#0" expanded="false" />
-            <element signature="e#64915#64916#0" expanded="false" />
-            <element signature="e#64960#64961#0" expanded="false" />
-            <element signature="e#72180#72181#0" expanded="false" />
-            <element signature="e#72222#72223#0" expanded="false" />
-            <element signature="e#74200#74201#0" expanded="false" />
-            <element signature="e#74284#74285#0" expanded="false" />
-            <element signature="e#77573#77574#0" expanded="false" />
-            <element signature="e#77641#77642#0" expanded="false" />
-            <element signature="e#82100#82101#0" expanded="false" />
-            <element signature="e#82127#82128#0" expanded="false" />
-            <element signature="e#85928#85929#0" expanded="false" />
-            <element signature="e#85955#85956#0" expanded="false" />
-            <element signature="e#94008#94009#0" expanded="false" />
-            <element signature="e#94074#94075#0" expanded="false" />
-            <element signature="e#99990#99991#0" expanded="false" />
-            <element signature="e#100025#100026#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1117,17 +1150,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.71907216">
           <caret line="151" column="31" selection-start-line="151" selection-start-column="31" selection-end-line="151" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/ZombieCrushSaga.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1143,24 +1165,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/resources/data/properties.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.0">
+        <state vertical-scroll-proportion="0.0">
           <caret line="16" column="61" selection-start-line="16" selection-start-column="61" selection-end-line="16" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/data/ZombieCrushSagaDataModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1814" column="35" selection-start-line="1814" selection-start-column="35" selection-end-line="1814" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/events/KeyHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="58" column="16" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="36" />
           <folding />
         </state>
       </provider>
@@ -1179,7 +1185,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/ui/ZombieCrushSagaPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.3448277">
+        <state vertical-scroll-proportion="0.0">
           <caret line="217" column="31" selection-start-line="217" selection-start-column="31" selection-end-line="217" selection-end-column="31" />
           <folding />
         </state>
@@ -1189,14 +1195,58 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="45" column="28" selection-start-line="45" selection-start-column="28" selection-end-line="45" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/events/KeyHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.64171976">
+          <caret line="58" column="16" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/file/ZombieCrushSagaFileManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5325301">
-          <caret line="64" column="36" selection-start-line="64" selection-start-column="36" selection-end-line="64" selection-end-column="36" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="65" column="12" selection-start-line="65" selection-start-column="12" selection-end-line="65" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/ZombieCrushSaga.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/ZombieCrushSagaConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.862069">
+          <caret line="112" column="41" selection-start-line="112" selection-start-column="32" selection-end-line="112" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/ui/ZombieCrushSagaZombie.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="221" column="54" selection-start-line="221" selection-start-column="54" selection-end-line="221" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ZombieCrushSaga/src/main/java/zombie_crush_saga/data/ZombieCrushSagaDataModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.55097085">
+          <caret line="1240" column="27" selection-start-line="1240" selection-start-column="27" selection-end-line="1240" selection-end-column="27" />
           <folding />
         </state>
       </provider>
@@ -1207,10 +1257,12 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
+          <last-edited>ZombieCrushSaga</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>

@@ -63,7 +63,7 @@ public class ZombieCrushSagaFileManager {
         // FOLLOWED BY THE GRID VALUES
         try {
             File fileToOpen = loadFile(levelFile);
-           // LET'S USE A FAST LOADING TECHNIQUE. WE'LL LOAD ALL OF THE
+            // LET'S USE A FAST LOADING TECHNIQUE. WE'LL LOAD ALL OF THE
             // BYTES AT ONCE INTO A BYTE ARRAY, AND THEN PICK THAT APART.
             // THIS IS FAST BECAUSE IT ONLY HAS TO DO FILE READING ONCE
             byte[] bytes = new byte[Long.valueOf(fileToOpen.length()).intValue()];
